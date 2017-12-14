@@ -31,18 +31,6 @@ public class GraphActivity extends AppCompatActivity {
         result_ = (WeatherEntry.WeatherObject) bundle.getSerializable("result_");
         TextView text = (TextView)findViewById(R.id.textView3);
 
-        if (result_ != null){
-            DataPoint[] points = new DataPoint[result_.listMain.size()];
-            for (int i = 0; i < result_.listMain.size(); i++){
-                points[i] = new DataPoint(0, result_.listMain.get(i).listMain.temp);
-            }
-            GraphView graph = (GraphView) findViewById(R.id.graph1);
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
-            graph.addSeries(series);
-        } else {
-            text.setText("Nejprve musite stahnout data.");
-        }
-
     }
 
 }
