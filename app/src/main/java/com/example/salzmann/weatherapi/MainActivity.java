@@ -191,6 +191,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             "Posledni update: " + weather_.dt_txt;
                     textOutput.setText(outputText);
 
+                    DataPoint[] points = new DataPoint[result_.listMain.size()];
+                    DataPoint[] pointsHumidity = new DataPoint[result_.listMain.size()];
+                    for (int i = 0; i < result_.listMain.size(); i++){
+                        points[i] = new DataPoint(i, result_.listMain.get(i).listMain.temp);
+                        pointsHumidity[i] = new DataPoint(i, result_.listMain.get(i).listMain.humidity);
+                    }
+                    GraphView graph = (GraphView) findViewById(R.id.graph1);
+                    LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
+                    graph.addSeries(series);
+
+                    GraphView graph2 = (GraphView) findViewById(R.id.graph2);
+                    LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(pointsHumidity);
+                    graph2.addSeries(series2);
                 }
             }
 
